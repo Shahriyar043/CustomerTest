@@ -1,0 +1,58 @@
+﻿@model InterView.Models.AllCustomer
+
+<div class="modal fade" id="editcustomer" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width:30%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="title" id="defaultModalLabel">Yeni müştərini daxil edin</h6>
+            </div>
+            @if (ViewBag.Message != null)
+            {
+                <span class="text-success">@ViewBag.Message</span>
+            }
+            @using (Html.BeginForm("EditCustomer", "Customer", FormMethod.Post, new { id = "form-btn_search", @class = "full-form" }))
+            {
+                foreach (var item in Model.ListCustomer)
+                {
+                    <div class="modal-body">
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <i>KODU </i>
+                                    <input name="CUSTOMER_ID" type="text" value="@item.Id" class="form-control" readonly="readonly" />
+                                </div>
+                                <div class="form-group">
+                                    <i>Adı </i>
+                                    <input name="FIRSTNAME" type="text" value="@item.FIRSTNAME" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <i>Soyadı </i>
+                                    <input name="LASTNAME" type="text" value="@item.LASTNAME" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <i>Atasının adı </i>
+                                    <input name="FATHERNAME" type="text" value="@item.FATHERNAME" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <i>Doğum tarixi </i>
+                                    <input name="BIRTHDAY" type="datetime" value="@item.BIRTHDAY" class="form-control datepicker" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="modal-footer">
+                    <button type="submit" id="btn_insert" name="btn_search" value="Əlavə et" class="btn btn-primary"><i class="fa fa-plus"></i>  Dəyiş</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close"></i> Bağla</button>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+
+

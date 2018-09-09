@@ -1,0 +1,40 @@
+﻿@model InterView.Models.AllOrder
+
+@{
+    ViewBag.Title = "GetAllOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetAllCustomers</h2>
+
+<div>
+    
+    <h4>Customer</h4>
+    <hr />
+    <table class="table table-responsive">
+        <thead>
+        <td>@Html.DisplayNameFor(Model => Model.Order.CUSTOMERID)</td>
+        <td>@Html.DisplayNameFor(Model => Model.Order.ORDERNAME)</td>
+        <td>@Html.DisplayNameFor(Model => Model.Order.SALARY)</td>
+        <td>Düzəliş</td>
+        <td>Sil</td>
+        </thead>
+        <tbody>
+
+            @using (Html.BeginForm())
+            {
+                foreach (var item in Model.ListOrder)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelitem => item.CUSTOMERID)</td>
+                        <td>@Html.DisplayFor(modelitem => item.ORDERNAME)</td>
+                        <td>@Html.DisplayFor(modelitem => item.SALARY)</td>
+                        <td> 
+                    </tr>
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

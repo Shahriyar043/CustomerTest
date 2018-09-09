@@ -1,0 +1,67 @@
+﻿@model InterView.Models.AllCustomer
+
+@{
+    ViewBag.Title = "GetAllCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetAllCustomers</h2>
+
+<div>
+    <div class="header">
+        <ul class="header-dropdown">
+            <li><a href="javascript:void(0);" class="btn btn-info" data-toggle="modal" data-target="#newcustomer">Yeni müştəri</a></li>
+        </ul>
+    </div>
+    <h4>Customer</h4>
+    <hr />
+
+    <div class="input-group col-md-6" id="navbar-search">
+        <input class="form-control" id="myInput" onkeyup="myFunction()" type="text" placeholder="Axtar..">
+        <div class="input-group-append">
+            <button type="button" class="btn btn-outline-secondary"><i class="fa fa-search"></i> Axtar</button>       
+           
+        </div>
+    </div>
+
+    <table class="table table-responsive">
+        <thead>
+        <td>@Html.DisplayNameFor(Model => Model.Customer.FIRSTNAME)</td>
+        <td>@Html.DisplayNameFor(Model => Model.Customer.LASTNAME)</td>
+        <td>@Html.DisplayNameFor(Model => Model.Customer.FATHERNAME)</td>
+        <td>@Html.DisplayNameFor(Model => Model.Customer.BIRTHDAY)</td>
+        <td>Sifariş</td>
+        <td>Düzəliş</td>
+        <td>Sil</td>
+        </thead>
+        <tbody>
+
+            @using (Html.BeginForm())
+            {
+                foreach (var item in Model.ListCustomer)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelitem => item.FIRSTNAME)</td>
+                        <td>@Html.DisplayFor(modelitem => item.LASTNAME)</td>
+                        <td>@Html.DisplayFor(modelitem => item.FATHERNAME)</td>
+                        <td>@Html.DisplayFor(modelitem => item.BIRTHDAY)</td>
+                        <td>
+                            @*Sifariş*@
+                            <a href="@Url.Action("Details","Order",new { id=item.Id })" class="btn btn-sm btn-outline-secondary" onclick="SetName();"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td>
+                            @*Dəyiş*@
+                            <a href="@Url.Action("GetEditCustomer","Customer",new { id=item.Id })" class="btn btn-sm btn-outline-secondary" onclick="SetName();"><i class="fa fa-edit"></i></a>
+                        </td>
+                        @*Sil*@
+                        <a href="@Url.Action("GetDeleteCustomer","Customer",new { id=item.Id })" class="btn btn-sm btn-outline-secondary" onclick="SetName();"><i class="fa fa-trash-o"></i></a>
+                    </tr>
+
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+@Html.Partial("GetNewCustomers")
